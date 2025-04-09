@@ -19,7 +19,7 @@ export class ListService {
     const board = await this.boardRepository.findOne({
       where: { id: boardId },
     });
-    console.log(board);
+    // console.log(board);
 
     if (!board) {
       throw new NotFoundException(`Board with ID ${boardId} not found`);
