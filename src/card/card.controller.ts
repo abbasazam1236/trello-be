@@ -28,10 +28,10 @@ export class CardController {
     return this.cardService.findAll();
   }
 
-  // @Get(':id')
-  // findOne(@Param('id') id: string) {
-  //   return this.cardService.findOne(+id);
-  // }
+  @Get('find_list_against_listId/:listId')
+  async findOne(@Param('listId') listId: string) {
+    return this.cardService.findOne(+listId);
+  }
 
   // @Patch(':id')
   // update(@Param('id') id: string, @Body() updateCardDto: UpdateCardDto) {

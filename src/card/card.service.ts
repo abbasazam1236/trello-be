@@ -31,9 +31,12 @@ export class CardService {
       return await this.cardRepository.find();
     }
 
-  // findOne(id: number) {
-  //   return `This action returns a #${id} card`;
-  // }
+  async findOne(listId: number) {
+    return await this.cardRepository.find({
+      where: { list: { id: listId } }, // ✅ Correct filtering
+      relations: ["list"],
+    });
+  }
 
   // update(id: number, updateCardDto: UpdateCardDto) {
   //   return `This action updates a #${id} card`;

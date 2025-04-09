@@ -30,7 +30,6 @@ export class ListController {
 
   @Get('find_list_against_boardId/:boardId') // ✅ Fix Route Syntax
   async findOne(@Param('boardId') boardId: string) {
-    console.log(boardId)
     return this.listService.findOne(+boardId); // ✅ Convert boardId to number
   }
   
