@@ -38,6 +38,28 @@ export class CardService {
     });
   }
 
+  async update(id: number, updateCardDto: UpdateCardDto): Promise<Card> {
+    const card = await this.cardRepository.findOne({ where: { id } });
+  
+    if (!card) {
+      throw new NotFoundException(`Card with ID ${id} not found`);
+    }
+    card.completed = updateCardDto.completed ?? card.completed;
+  
+    return await this.cardRepository.save(card);
+  }
+  
+  // card.service.ts
+  async moveCardToAnotherList(cardId: number, listId: number) {
+    const card = await this.cardRepository.findOneBy({ id: cardId });
+    if (!card) throw new NotFoundException('Card not found');
+  
+    const targetList = await this.listRepository.findOneBy({ id: listId });
+    if (!targetList) throw new NotFoundException('Target list not found');
+  
+    card.list = targetList;
+    return await this.cardRepository.save(card);
+  }
   // update(id: number, updateCardDto: UpdateCardDto) {
   //   return `This action updates a #${id} card`;
   // }

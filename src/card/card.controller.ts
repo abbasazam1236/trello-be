@@ -33,6 +33,20 @@ export class CardController {
     return this.cardService.findOne(+listId);
   }
 
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateCardDto: UpdateCardDto) {
+    return this.cardService.update(+id, updateCardDto);
+  }
+
+  // card.controller.ts
+@Patch('move/:cardId')
+moveCard(
+  @Param('cardId') cardId: string,
+  @Body() body: { listId: number },
+) {
+  return this.cardService.moveCardToAnotherList(+cardId, body.listId);
+}
+
   // @Patch(':id')
   // update(@Param('id') id: string, @Body() updateCardDto: UpdateCardDto) {
   //   return this.cardService.update(+id, updateCardDto);

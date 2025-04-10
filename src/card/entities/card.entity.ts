@@ -19,6 +19,9 @@ export class Card {
   @Column()
   listId: string;
 
+  @Column({ default: false })
+  completed: boolean;
+
   @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   created_at: Date;
 
